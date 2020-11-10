@@ -1,0 +1,13 @@
+
+.MainNotePage {
+    background-color: #efefef;
+   
+    padding: 10px;
+    width: 100%;
+  }
+  
+  .MainNotePage-content {
+    color: #3a3939;
+    max-width: 380px;
+   
+  }

@@ -1,0 +1,18 @@
+.MainNoteList ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 10px;
+  }
+  
+  .MainNoteList-button-wrapper {
+    max-width: 380px;
+    margin: 0 10px;
+  }
+  
+  .MainNoteList-add-note{
+    margin: 0 auto 20px;
+  }
+  .MainNoteList-add-note:hover {
+    background-color: #29862e;
+    color: white;
+  }

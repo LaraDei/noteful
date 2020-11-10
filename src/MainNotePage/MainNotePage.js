@@ -1,22 +1,29 @@
 import React from 'react'
 import Note from '../Note/Note'
 import './MainNotePage.css'
+import Context from '../Context'
+import {findNote} from '../Helpers'
 
-export default function MainNotePage(props) {
-    console.log(props)
+export default class MainNotePage extends React.Component{
+    static contextType = Context
+    render(){
+        const { notes=[] } = this.context
+        const { noteId } = this.props.match.params
+        const note = findNote(notes, noteId) || { content: '' }
     return(
         <div className="MainNotePage">
             <Note
-                id={props.note.id}
-                name={props.note.name}
-                modified={props.note.modified}
+                id={note.id}
+                name={note.name}
+                modified={note.modified}
             />
             <div className='MainNotePage-content'>
-                {props.note.content.split(/\n \r|\n/).map((para, i) =>
+                {note.content.split(/\n \r|\n/).map((para, i) =>
                 <p key={i}>{para}</p>
                 )}
             </div>
         </div>
 
     )
+    }
 }

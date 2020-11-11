@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import { NavLink, Link } from 'react-router-dom'
 import {countNotesForFolder} from '../Helpers'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'

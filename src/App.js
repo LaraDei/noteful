@@ -1,14 +1,16 @@
-import React, {Component} from 'react';
-import {Route, Link} from 'react-router-dom';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import MainNav from './MainNav/MainNav';
-import NotePageNav from './NotePageNav/NotePageNav';
-import MainNoteList from './MainNoteList/MainNoteList';
-import MainNotePage from './MainNotePage/MainNotePage';
-import {getNotesForFolder, findNote, findFolder} from './Helpers';
+import React, {Component} from 'react'
+import {Route, Link} from 'react-router-dom'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import MainNav from './MainNav/MainNav'
+import NotePageNav from './NotePageNav/NotePageNav'
+import MainNoteList from './MainNoteList/MainNoteList'
+import MainNotePage from './MainNotePage/MainNotePage'
 import Context from './Context'
-import './App.css';
-console.log(Context)
+import './App.css'
+import AddFolder from './AddFolder/AddFolder'
+import AddNote from './AddNote/AddNote'
+
+
 export default class App extends Component {
     state = {
         notes: [],
@@ -35,6 +37,30 @@ export default class App extends Component {
                 console.error({error});
             });
     }
+
+    handleDeleteNote = noteId => {
+        this.setState({
+            notes: this.state.notes.filter(note => note.id !== noteId)
+        });
+    };
+
+    handleAddFolder = folder =>{
+        this.setState(
+            {
+              folders: [...this.state.folders, folder]
+            },
+            
+        )
+    }
+
+    handleAddNote = note =>{
+        this.setState(
+            {
+              notes: [...this.state.notes, note]
+            },
+        )
+    }
+
 
     renderNavRoutes() {
         const {notes, folders} = this.state;
@@ -75,6 +101,8 @@ export default class App extends Component {
                 path="/note/:noteId"
                 component={MainNotePage}
             />
+            <Route path="/add-folder" component={AddFolder} />
+            <Route path="/add-note" component={AddNote} />
           </>
         )
     }
@@ -83,7 +111,9 @@ export default class App extends Component {
         const value = {
             notes: this.state.notes,
             folders: this.state.folders,
-            deleteNote: this.handleDeleteNote
+            deleteNote: this.handleDeleteNote,
+            addFolder: this.handleAddFolder,
+            addNote: this.handleAddNote,
         };
         return (
             <Context.Provider value={value}>

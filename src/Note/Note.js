@@ -12,7 +12,32 @@ export default class Note extends React.Component{
     }
 
     static contextType = Context
-    
+
+    handleClickDelete = (e) => {
+        e.preventDefault()
+        const noteId = this.props.id
+
+        fetch(`http://localhost:9090/notes/${noteId}`, {
+            method: 'DELETE',
+            headers: {
+                'content-type': 'application/json'
+            },
+        })
+        .then(res => {
+            if (!res.ok)
+            return res.json().then(e => Promise.reject(e))
+            return res.json()
+        })
+        .then(() => {
+            this.context.deleteNote(noteId)
+            // allow parent to perform extra behaviour
+            this.props.onDeleteNote(noteId)
+        })
+        .catch(error => {
+            console.error({ error })
+        })
+    }
+
     render(){
         const { name, id, modified } = this.props
         return(
@@ -23,7 +48,10 @@ export default class Note extends React.Component{
                         {name}
                     </Link>
                 </h2>
-                <button className="note-delete">
+                <button 
+                    className="note-delete"
+                    onClick={this.handleClickDelete}
+                >
                     <FontAwesomeIcon icon='trash-alt' />
                     {' '}
                     remove
@@ -32,7 +60,7 @@ export default class Note extends React.Component{
                     <div className="note-modified">
                     Modified {' '}
                     <span className='mod-date'>
-                        {format(parseISO(modified), 'Do MMM yyyy')}
+                        {format(parseISO(modified), 'do MMM yyyy')}
                     </span>
                     </div>
                 </div>

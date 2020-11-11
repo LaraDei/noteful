@@ -4,6 +4,7 @@ import { format, parseISO } from 'date-fns'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Context from '../Context'
 import './Note.css'
+import Error from '../errorBoundary'
 
 
 export default class Note extends React.Component{
@@ -42,28 +43,30 @@ export default class Note extends React.Component{
         const { name, id, modified } = this.props
         return(
             
-            <div className="note">
-                <h2 className="note-title">
+            <div className='note'>
+                <Error>
+                <h2 className='note-title'>
                     <Link to={`/note/${id}`}>
                         {name}
                     </Link>
                 </h2>
                 <button 
-                    className="note-delete"
+                    className='note-delete'
                     onClick={this.handleClickDelete}
                 >
                     <FontAwesomeIcon icon='trash-alt' />
                     {' '}
                     remove
                 </button>
-                <div className="note-dates">
-                    <div className="note-modified">
+                <div className='note-dates'>
+                    <div className='note-modified'>
                     Modified {' '}
                     <span className='mod-date'>
                         {format(parseISO(modified), 'do MMM yyyy')}
                     </span>
                     </div>
                 </div>
+                </Error>
             </div>
             
         )

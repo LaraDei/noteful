@@ -4,7 +4,7 @@ import Context from '../Context'
 import './AddNote.css'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import ValidationError from "../ValidationError/ValidationError"
-//import { format, parseISO } from 'date-fns'
+import PropTypes from 'prop-types'
 
 export default class AddNote extends React.Component {
     constructor(props){
@@ -12,7 +12,7 @@ export default class AddNote extends React.Component {
         this.state = {
             error: null,
             name: {
-                value: "",
+                value: '',
                 touched: false,
                 valid: false
             },
@@ -70,31 +70,30 @@ export default class AddNote extends React.Component {
         })
     } 
 
-
-
     render(){
         const nameError = this.validateName();
         const { folders=[] } = this.context
         return(
-            <section className="AddNote">
+            <section className='AddNote'>
                 <h2>Create a New Note</h2>
                 <NotefulForm onSubmit={this.handleSubmit}>
                     <h2>Add Note</h2>
-                    <div className="form-group">
-                        <label htmlFor="note-name">Name</label>
+                    <div className='form-group'>
+                        <label htmlFor='note-name'>Name</label>
                         <input
-                            type="text"
-                            className="AddNote-control"
-                            name="note"
-                            id="note-name-input"
-                            onChange={e => this.updateName(e.target.value)} required/>
+                            type='text'
+                            className='AddNote-control'
+                            name='note'
+                            id='note-name-input'
+                            onChange={e => this.updateName(e.target.value)} 
+                            required/>
                         {this.state.name.touched && (<ValidationError message={nameError} />)}
-                        <label htmlFor="content">Content</label>
+                        <label htmlFor='content'>Content</label>
                         <textarea
-                            type="text"
-                            className="AddNote-control"
-                            name="note-content"
-                            id="note-content-input"
+                            type='text'
+                            className='AddNote-control'
+                            name='note-content'
+                            id='note-content-input'
                             required/>
                     </div>
                     <div className='field'>
@@ -108,10 +107,10 @@ export default class AddNote extends React.Component {
                             )}
                         </select>
                     </div>
-                    <div className="AddNote-button-wrapper">
+                    <div className='AddNote-button-wrapper'>
                         <button
-                            type="submit"
-                            className="AddNote-button"
+                            type='submit'
+                            className='AddNote-button'
                             >
                             <FontAwesomeIcon icon='check-double' />
                             Add Note
@@ -121,4 +120,14 @@ export default class AddNote extends React.Component {
             </section>
         )
     }
+}
+AddNote.defaultProps = {
+    name: '',
+    content: ''
+}
+AddNote.propTypes = {
+    name: PropTypes.string.isRequired,
+    content: PropTypes.string,
+    id: PropTypes.string,
+    modified: PropTypes.string
 }

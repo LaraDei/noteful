@@ -5,6 +5,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import CircleButton from '../CircleButton/CircleButton'
 import './MainNav.css'
 import Context from '../Context'
+import Error from '../errorBoundary'
+import PropTypes from 'prop-types'
 
 
 export default class MainNav extends React.Component {
@@ -12,23 +14,25 @@ export default class MainNav extends React.Component {
     render() {
         const { folders=[], notes=[] } = this.context
         return (
-            <div className="mainNav">
-                <ul className="mainNav-list">
+            <div className='mainNav'>
+                <ul className='mainNav-list'>
+                    <Error>
                     {folders.map(folder =>
                         <li key={folder.id}>
                             <NavLink
-                                className="mainNav-folder-link"
+                                className='mainNav-folder-link'
                                 to={`/folder/${folder.id}`}
                             >
-                                <span className="mainNav-numOfNotes">
+                                <span className='mainNav-numOfNotes'>
                                     {countNotesForFolder(notes, folder.id)}
                                 </span>
                                 {folder.name}
                             </NavLink>
                         </li>
                     )}
+                    </Error>
                 </ul>
-                <div className="mainNav-button-wrapper">
+                <div className='mainNav-button-wrapper'>
                     <CircleButton
                         tag={Link}
                         to='/add-folder'
@@ -41,8 +45,13 @@ export default class MainNav extends React.Component {
                     </CircleButton>
                 </div>
             </div>
-
         )
     }
-    
+}
+
+MainNav.propTypes = {
+    notes : PropTypes.array,
+    folders : PropTypes.array,
+    id: PropTypes.string,
+    name: PropTypes.string,
 }

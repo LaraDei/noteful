@@ -3,16 +3,31 @@ import NotefulForm from '../NotefullForm/NotefulForm'
 import Context from '../Context'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import './AddFolder.css'
+import PropTypes from 'prop-types'
 
 
 
 export default class AddFolder extends React.Component {
+    constructor(props){
+        super(props);
+        this.state={
+            folderName: {
+                value: '',
+                touched: false
+            }
+        }
+    }
+
     static defaultProps = {
         history: {
           push: () => {}
         }
     }
     static contextType = Context;
+
+    updateFolderName(name){
+        this.setState({folderName: {value: name, touched: true}})
+    }
     
     handleSubmit= e => {
       e.preventDefault()
@@ -48,19 +63,20 @@ export default class AddFolder extends React.Component {
                     onSubmit={this.handleSubmit}
                 >
                     <h2>Add Folder</h2>
-                    <div className="form-group">
-                        <label htmlFor="name">Name</label>
+                    <div className='form-group'>
+                        <label htmlFor='name'>Name</label>
                         <input
-                            type="text"
-                            className="AddFolder-control"
-                            name="folder"
-                            id="folder-name-input"
+                            type='text'
+                            className='AddFolder-control'
+                            name='folder'
+                            id='folder-name-input'
+                            onChange={e => this.updateFolderName(e.target.value)}
                             required
                         />
                     </div>
-                    <div className="AddFolder-button-wrapper">
+                    <div className='AddFolder-button-wrapper'>
                         <button
-                            type="submit"
+                            type='submit'
                             className="AddFolder-button"
                         >
                             <FontAwesomeIcon icon='check-double' />
@@ -69,7 +85,15 @@ export default class AddFolder extends React.Component {
                     </div>
                 </NotefulForm>
             </section>
-
         )
     }
+}
+AddFolder.defaultProps = {
+  name: '' ,
+  id: ''
+}
+
+AddFolder.propTypes = {
+    name: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired
 }

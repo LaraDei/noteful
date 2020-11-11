@@ -11,6 +11,7 @@ import AddFolder from './AddFolder/AddFolder'
 import AddNote from './AddNote/AddNote'
 
 
+
 export default class App extends Component {
     state = {
         notes: [],
@@ -63,7 +64,6 @@ export default class App extends Component {
 
 
     renderNavRoutes() {
-        const {notes, folders} = this.state;
         return (
           <>
             {['/', '/folder/:folderId'].map(path => (
@@ -78,15 +78,13 @@ export default class App extends Component {
                 path="/note/:noteId"
                 component={NotePageNav}
             />
-            <Route path="/add-folder" component={NotePageNav} />
-            <Route path="/add-note" component={NotePageNav} />
-            
+            <Route path='/add-folder' component={NotePageNav} />
+            <Route path='/add-note' component={NotePageNav} />     
           </>
         )
     }
 
     renderMainRoutes(){
-        const {notes} = this.state;
         return(
           <>
             {['/', '/folder/:folderId'].map(path => (
@@ -98,11 +96,11 @@ export default class App extends Component {
                 />
             ))}
             <Route
-                path="/note/:noteId"
+                path='/note/:noteId'
                 component={MainNotePage}
             />
-            <Route path="/add-folder" component={AddFolder} />
-            <Route path="/add-note" component={AddNote} />
+            <Route path='/add-folder' component={AddFolder} />
+            <Route path='/add-note' component={AddNote} />
           </>
         )
     }
@@ -117,9 +115,11 @@ export default class App extends Component {
         };
         return (
             <Context.Provider value={value}>
-                <div className="App">
-                    <nav className="app-nav">
+                <div className='App'>
+                    <nav className='app-nav'>
+                   
                         {this.renderNavRoutes()}
+                  
                     </nav>
                     <header className='app-header'>
                         <h1>

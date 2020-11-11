@@ -5,6 +5,7 @@ import Note from '../Note/Note'
 import CircleButton from '../CircleButton/CircleButton'
 import { getNotesForFolder } from '../Helpers'
 import Context from '../Context'
+import PropTypes from 'prop-types'
 
 import './MainNoteList.css'
 
@@ -34,7 +35,7 @@ export default class MainNoteList extends React.Component {
                         </li>
                     )}
                 </ul>
-                <div className="MainNoteList-button-wrapper">
+                <div className='MainNoteList-button-wrapper'>
                         <CircleButton
                             tag={Link}
                             to='/add-note'
@@ -49,4 +50,10 @@ export default class MainNoteList extends React.Component {
             </section>
         )
     }
+}
+MainNoteList.propTypes = {
+    notes : PropTypes.array,
+    id: PropTypes.string,
+    name: PropTypes.string,
+    modified: PropTypes.string,
 }

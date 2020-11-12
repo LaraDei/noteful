@@ -30,8 +30,5 @@ export default class MainNotePage extends React.Component{
 }
 
 MainNoteList.propTypes = {
-    id: PropTypes.string,
-    name: PropTypes.string,
-    modified: PropTypes.string,
-    content: PropTypes.string,
+    noteId: PropTypes.string
 }

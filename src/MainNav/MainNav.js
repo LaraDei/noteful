@@ -6,7 +6,7 @@ import CircleButton from '../CircleButton/CircleButton'
 import './MainNav.css'
 import Context from '../Context'
 import Error from '../errorBoundary'
-import PropTypes from 'prop-types'
+//import PropTypes from 'prop-types'
 
 
 export default class MainNav extends React.Component {
@@ -49,9 +49,3 @@ export default class MainNav extends React.Component {
     }
 }
 
-MainNav.propTypes = {
-    notes : PropTypes.array,
-    folders : PropTypes.array,
-    id: PropTypes.string,
-    name: PropTypes.string,
-}

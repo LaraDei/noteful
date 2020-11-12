@@ -52,8 +52,6 @@ export default class MainNoteList extends React.Component {
     }
 }
 MainNoteList.propTypes = {
-    notes : PropTypes.array,
-    id: PropTypes.string,
-    name: PropTypes.string,
-    modified: PropTypes.string,
+
+    folderId: PropTypes.string,
 }

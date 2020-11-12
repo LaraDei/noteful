@@ -4,7 +4,7 @@ import Context from '../Context'
 import './AddNote.css'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import ValidationError from "../ValidationError/ValidationError"
-import PropTypes from 'prop-types'
+//import PropTypes from 'prop-types'
 
 export default class AddNote extends React.Component {
     constructor(props){
@@ -99,7 +99,7 @@ export default class AddNote extends React.Component {
                     <div className='field'>
                         <label htmlFor='note-folder-select'>Folder</label>
                         <select id='note-folder-select' name='note-folder-id' required> 
-                            <option value={null}>...</option>
+                            <option value="" >...</option>
                             {folders.map(folder =>
                                 <option key={folder.id} value={folder.id}>
                                 {folder.name}
@@ -120,14 +120,4 @@ export default class AddNote extends React.Component {
             </section>
         )
     }
-}
-AddNote.defaultProps = {
-    name: '',
-    content: ''
-}
-AddNote.propTypes = {
-    name: PropTypes.string.isRequired,
-    content: PropTypes.string,
-    id: PropTypes.string,
-    modified: PropTypes.string
 }

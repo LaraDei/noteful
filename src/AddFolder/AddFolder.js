@@ -3,7 +3,7 @@ import NotefulForm from '../NotefullForm/NotefulForm'
 import Context from '../Context'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import './AddFolder.css'
-import PropTypes from 'prop-types'
+//import PropTypes from 'prop-types'
 
 
 
@@ -88,12 +88,4 @@ export default class AddFolder extends React.Component {
         )
     }
 }
-AddFolder.defaultProps = {
-  name: '' ,
-  id: ''
-}
 
-AddFolder.propTypes = {
-    name: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired
-}

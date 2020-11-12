@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Context from '../Context'
 import './Note.css'
 import Error from '../errorBoundary'
-
+import PropTypes from 'prop-types'
 
 export default class Note extends React.Component{
     static defaultProps ={
@@ -71,4 +71,10 @@ export default class Note extends React.Component{
             
         )
     }
+}
+
+Note.propTypes = {
+    name: PropTypes.string,
+    id: PropTypes.string,
+    modified: PropTypes.string
 }

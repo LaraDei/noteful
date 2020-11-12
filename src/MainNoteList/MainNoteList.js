@@ -52,6 +52,5 @@ export default class MainNoteList extends React.Component {
     }
 }
 MainNoteList.propTypes = {
-
     folderId: PropTypes.string,
 }

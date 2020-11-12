@@ -4,7 +4,7 @@ import Context from '../Context'
 import './AddNote.css'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import ValidationError from "../ValidationError/ValidationError"
-//import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
 
 export default class AddNote extends React.Component {
     constructor(props){
@@ -120,4 +120,14 @@ export default class AddNote extends React.Component {
             </section>
         )
     }
+}
+AddNote.defaultProps = {
+    name: '',
+    content: ''
+}
+AddNote.propTypes = {
+    name: PropTypes.string.isRequired,
+    content: PropTypes.string.isRequired,
+    id: PropTypes.string,
+    modified: PropTypes.string
 }

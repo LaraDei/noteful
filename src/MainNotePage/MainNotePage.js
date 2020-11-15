@@ -7,11 +7,21 @@ import PropTypes from 'prop-types'
 
 
 export default class MainNotePage extends React.Component{
+    static defaultProps = {
+        match: {
+          params: {}
+        }
+      }
+
     static contextType = Context
+
+    handleDeleteNote = noteId => {
+        this.props.history.push(`/`)
+      }
+
     render(){
         const { notes=[] } = this.context
         const { noteId } = this.props.match.params
-        console.log(this.props)
         const note = findNote(notes, noteId) || { content: '' }
         return(
             <div className='MainNotePage'>
@@ -19,6 +29,7 @@ export default class MainNotePage extends React.Component{
                     id={note.id}
                     name={note.name}
                     modified={note.modified}
+                    onDeleteNote={this.handleDeleteNote}
                 />
                 <div className='MainNotePage-content'>
                     {note.content.split(/\n \r|\n/).map((para, i) =>
@@ -39,5 +50,8 @@ MainNotePage.propTypes = {
         params: PropTypes.shape({
             noteId: PropTypes.string
         }),
+    history: PropTypes.shape({
+        push: PropTypes.func
+         }),
     }),
 }

@@ -14,7 +14,7 @@ export default class AddNote extends React.Component {
             name: {
                 value: '',
                 touched: false,
-                valid: false
+                valid: false,
             },
         }
     }
@@ -123,11 +123,12 @@ export default class AddNote extends React.Component {
 }
 AddNote.defaultProps = {
     name: '',
-    content: ''
 }
 AddNote.propTypes = {
-    name: PropTypes.string.isRequired,
-    content: PropTypes.string.isRequired,
-    id: PropTypes.string,
-    modified: PropTypes.string
+    history: PropTypes.shape({
+        push: PropTypes.func
+    }),
+    name: PropTypes.shape({
+        name: PropTypes.string.isRequired,
+    })
 }

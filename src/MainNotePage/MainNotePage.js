@@ -4,7 +4,7 @@ import './MainNotePage.css'
 import Context from '../Context'
 import {findNote} from '../Helpers'
 import PropTypes from 'prop-types'
-import MainNoteList from '../MainNoteList/MainNoteList'
+
 
 export default class MainNotePage extends React.Component{
     static contextType = Context
@@ -30,6 +30,14 @@ export default class MainNotePage extends React.Component{
     }
 }
 
-MainNoteList.propTypes = {
-    noteId: PropTypes.string
+// MainNotePage.propTypes = {
+//     noteId: PropTypes.string
+// }
+
+MainNotePage.propTypes = {
+    match: PropTypes.shape({
+        params: PropTypes.shape({
+            noteId: PropTypes.string
+        }),
+    }),
 }

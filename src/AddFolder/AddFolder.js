@@ -17,7 +17,7 @@ export default class AddFolder extends React.Component {
             }
         }
     }
-
+    
     static defaultProps = {
         history: {
           push: () => {}
@@ -42,9 +42,10 @@ export default class AddFolder extends React.Component {
         body: JSON.stringify(folder)
       })
       .then(res => {
-        if (!res.ok)
-          return res.json().then(e => Promise.reject(e))
-        return res.json()
+        if (!res.ok){
+          return res.json().then(e => Promise.reject(e))}
+        const newRes = res.json()
+        return newRes
       })
       .then(folder => {
         this.context.addFolder(folder)
@@ -89,11 +90,16 @@ export default class AddFolder extends React.Component {
     }
 }
 AddFolder.defaultProps = {
-  name: '' ,
-  id: ''
+    value: '',
 }
 
 AddFolder.propTypes = {
-    name: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired
+    folderName: PropTypes.shape({
+      value: PropTypes.string.isRequired,
+      touched: PropTypes.bool,
+    }),
+    history: PropTypes.shape({
+      push: PropTypes.func
+    }),
 }
+

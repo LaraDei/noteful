@@ -1,0 +1,3 @@
+[submodule "noteful-json-server-"]
+	path = noteful-json-server-
+	url = https://github.com/LaraDei/noteful-json-server-.git

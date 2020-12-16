@@ -41,13 +41,13 @@ export default class AddNote extends React.Component {
     handleSubmit = e => {
         e.preventDefault();
         const note = {
-            name: e.target['note'].value,
+            note_name: e.target['note'].value,
             content: e.target['note-content'].value,
-            folderId: e.target['note-folder-id'].value,
+            folder_id: e.target['note-folder-id'].value,
             modified: new Date().toISOString(),
         }
         console.log(note.modified)
-        fetch('http://localhost:9090/notes', {
+        fetch('http://localhost:8000/api/notes', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -62,7 +62,7 @@ export default class AddNote extends React.Component {
         .then(note => {
             console.log(this.context)
             this.context.addNote(note)
-            this.props.history.push(`/folder/${note.folderId}`)
+            this.props.history.push(`/folder/${note.folder_Id}`)
 
         })
         .catch(error => {
@@ -73,6 +73,7 @@ export default class AddNote extends React.Component {
     render(){
         const nameError = this.validateName();
         const { folders=[] } = this.context
+        console.log(folders)
         return(
             <section className='AddNote'>
                 <h2>Create a New Note</h2>
@@ -102,7 +103,7 @@ export default class AddNote extends React.Component {
                             <option value="" >...</option>
                             {folders.map(folder =>
                                 <option key={folder.id} value={folder.id}>
-                                {folder.name}
+                                {folder.folder_name}
                                 </option>
                             )}
                         </select>

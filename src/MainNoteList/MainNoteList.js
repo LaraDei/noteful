@@ -20,6 +20,7 @@ export default class MainNoteList extends React.Component {
     
     render() {
         const { folderId } = this.props.match.params
+        
         const { notes=[] } = this.context
         const notesForFolder = getNotesForFolder(notes, folderId)
         return(
@@ -29,8 +30,8 @@ export default class MainNoteList extends React.Component {
                         <li key={note.id}>
                         <Note
                             id={note.id}
-                            name={note.name}
-                            modified={note.modified}
+                            name={note.note_name}
+                            modified={note.date_modified}
                         />
                         </li>
                     )}

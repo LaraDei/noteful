@@ -9,19 +9,21 @@ import PropTypes from 'prop-types'
 export default class Note extends React.Component{
     static defaultProps ={
         onDeleteNote: () => {},
+        history: {
+            push: () => {}
+          },
     }
-
+ 
     static contextType = Context
 
     handleClickDelete = (e) => {
         e.preventDefault()
         const noteId = this.props.id
-
+        console.log(noteId)
+        console.log(this.context)
+        console.log(this.props)
         fetch(`https://vast-wildwood-60540.herokuapp.com/api/notes/${noteId}`, {
             method: 'DELETE',
-            headers: {
-                'content-type': 'application/json'
-            },
         })
         .then(res => {
             if (!res.ok)
@@ -30,11 +32,10 @@ export default class Note extends React.Component{
         })
         .then(() => {
             this.context.deleteNote(noteId)
-            this.props.onDeleteNote(noteId)
             this.props.history.push(`/`)
         })
         .catch(error => {
-            console.error({ error })
+            console.error({error})
         })
     }
 
@@ -74,7 +75,7 @@ export default class Note extends React.Component{
 
 Note.propTypes = {
     name: PropTypes.string,
-    id: PropTypes.string,
+    id: PropTypes.number,
     modified: PropTypes.string,
     onDeleteNote: PropTypes.func
 }

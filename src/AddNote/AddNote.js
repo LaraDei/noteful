@@ -60,9 +60,8 @@ export default class AddNote extends React.Component {
             return res.json()
         })
         .then(note => {
-            console.log(this.context)
             this.context.addNote(note)
-            this.props.history.push(`/folder/${note.folder_Id}`)
+            this.props.history.push(`/folder/${note.folder_id}`)
 
         })
         .catch(error => {
@@ -73,7 +72,6 @@ export default class AddNote extends React.Component {
     render(){
         const nameError = this.validateName();
         const { folders=[] } = this.context
-        console.log(folders)
         return(
             <section className='AddNote'>
                 <h2>Create a New Note</h2>
@@ -123,13 +121,13 @@ export default class AddNote extends React.Component {
     }
 }
 AddNote.defaultProps = {
-    name: '',
+    name: {},
 }
 AddNote.propTypes = {
     history: PropTypes.shape({
         push: PropTypes.func
     }),
     name: PropTypes.shape({
-        name: PropTypes.string.isRequired,
+        name: PropTypes.object.isRequired,
     })
 }

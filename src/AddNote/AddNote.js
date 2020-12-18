@@ -47,7 +47,7 @@ export default class AddNote extends React.Component {
             modified: new Date().toISOString(),
         }
         console.log(note.modified)
-        fetch('http://localhost:8000/api/notes', {
+        fetch('https://vast-wildwood-60540.herokuapp.com/api/notes', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

@@ -20,8 +20,8 @@ export default class App extends Component {
 
     componentDidMount() {
         Promise.all([
-            fetch('https://vast-wildwood-60540.herokuapp.com//api/notes'),
-            fetch('https://vast-wildwood-60540.herokuapp.com//api/folders')
+            fetch('https://vast-wildwood-60540.herokuapp.com/api/notes'),
+            fetch('https://vast-wildwood-60540.herokuapp.com/api/folders')
         ])
             .then(([notesRes, foldersRes]) => {
                 if (!notesRes.ok)
